@@ -18,7 +18,7 @@ const images = [
 const HorizontalGallery = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [scrollProgress, setScrollProgress] = useState(0);
+  
 
   useEffect(() => {
     const section = sectionRef.current;
@@ -32,8 +32,8 @@ const HorizontalGallery = () => {
 
       if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
         const progress = Math.abs(sectionTop) / sectionHeight;
-        setScrollProgress(progress);
         const maxScroll = container.scrollWidth - container.clientWidth;
+        container.scrollLeft = progress * maxScroll;
         container.scrollLeft = progress * maxScroll;
       }
     };
