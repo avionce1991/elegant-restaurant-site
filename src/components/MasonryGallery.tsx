@@ -15,7 +15,7 @@ import gallery7 from "@/assets/gallery-7.jpg";
 import gallery8 from "@/assets/gallery-8.jpg";
 import gallery9 from "@/assets/gallery-9.jpg";
 
-// 30 images by duplicating the available ones
+// 32 images to fill 4 columns evenly (8 per column)
 const allImages = [
   masonry1, masonry2, masonry3, masonry4, masonry5,
   gallery1, gallery2, gallery3, gallery4, gallery5,
@@ -23,6 +23,7 @@ const allImages = [
   masonry2, masonry3, masonry4, masonry5, gallery1,
   gallery2, gallery3, gallery4, gallery5, gallery6,
   gallery7, gallery8, gallery9, masonry1, masonry2,
+  masonry3, masonry4,
 ];
 
 const MasonryGallery = () => {
