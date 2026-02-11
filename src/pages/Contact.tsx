@@ -37,8 +37,8 @@ const Contact = () => {
                 <Phone size={18} strokeWidth={1} className="mt-1 text-muted-foreground" />
                 <div>
                   <p className="heading-caps text-xs text-muted-foreground mb-1">Telefon</p>
-                  <a href="tel:+381XXXXXXXXX" className="font-serif text-xl italic hover:opacity-60 transition-opacity">
-                    [DODAJ TELEFON]
+                  <a href="tel:+38163423715" className="font-serif text-xl italic hover:opacity-60 transition-opacity">
+                    +381 63 423 715
                   </a>
                 </div>
               </div>
@@ -47,8 +47,8 @@ const Contact = () => {
                 <Mail size={18} strokeWidth={1} className="mt-1 text-muted-foreground" />
                 <div>
                   <p className="heading-caps text-xs text-muted-foreground mb-1">Email</p>
-                  <a href="mailto:email@example.com" className="font-serif text-xl italic hover:opacity-60 transition-opacity">
-                    [DODAJ EMAIL]
+                  <a href="mailto:an.photography.matrimoni@gmail.com" className="font-serif text-xl italic hover:opacity-60 transition-opacity">
+                    an.photography.matrimoni@gmail.com
                   </a>
                 </div>
               </div>
@@ -58,12 +58,12 @@ const Contact = () => {
                 <div>
                   <p className="heading-caps text-xs text-muted-foreground mb-1">Instagram</p>
                   <a
-                    href="https://instagram.com/"
+                    href="https://www.instagram.com/an_photography91"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="font-serif text-xl italic hover:opacity-60 transition-opacity"
                   >
-                    [DODAJ INSTAGRAM]
+                    @an_photography91
                   </a>
                 </div>
               </div>
