@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 import gallery1 from "@/assets/gallery-1.jpg";
 import gallery2 from "@/assets/gallery-2.jpg";
@@ -17,13 +17,11 @@ const images = [
 
 const HorizontalGallery = () => {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  
+  const [translateX, setTranslateX] = useState(0);
 
   useEffect(() => {
     const section = sectionRef.current;
-    const container = scrollContainerRef.current;
-    if (!section || !container) return;
+    if (!section) return;
 
     const handleScroll = () => {
       const rect = section.getBoundingClientRect();
@@ -32,17 +30,21 @@ const HorizontalGallery = () => {
 
       if (sectionTop <= 0 && sectionTop >= -sectionHeight) {
         const progress = Math.abs(sectionTop) / sectionHeight;
-        const maxScroll = container.scrollWidth - container.clientWidth;
-        container.scrollLeft = progress * maxScroll;
-        container.scrollLeft = progress * maxScroll;
+        // Move from 0 to -(images.length - 1) * 100vw
+        const maxTranslate = (images.length - 1) * 100;
+        setTranslateX(-progress * maxTranslate);
+      } else if (sectionTop > 0) {
+        setTranslateX(0);
+      } else {
+        setTranslateX(-(images.length - 1) * 100);
       }
     };
 
     window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll(); // Initial call
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Height = 100vh (sticky) + enough scroll distance for horizontal content
   const totalImages = images.length;
 
   return (
@@ -53,14 +55,17 @@ const HorizontalGallery = () => {
     >
       <div className="sticky top-0 h-screen overflow-hidden">
         <div
-          ref={scrollContainerRef}
-          className="flex h-full items-stretch overflow-hidden"
-          style={{ width: "100%" }}
+          className="flex h-full items-stretch"
+          style={{
+            width: `${totalImages * 100}vw`,
+            transform: `translateX(${translateX}vw)`,
+            willChange: "transform",
+          }}
         >
           {images.map((img, i) => (
             <div
               key={i}
-              className="flex-shrink-0 h-full bg-background"
+              className="flex-shrink-0 h-full"
               style={{ width: "100vw" }}
             >
               <img
