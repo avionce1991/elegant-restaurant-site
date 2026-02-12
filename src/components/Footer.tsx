@@ -30,11 +30,11 @@ const Footer = () => {
           
           <a
             href="mailto:an.photography.matrimoni@gmail.com"
-            className="flex items-center gap-2 heading-caps text-xs text-muted-foreground hover:text-foreground transition-colors break-all"
+            className="flex items-center gap-2 heading-caps text-[10px] md:text-xs text-muted-foreground hover:text-foreground transition-colors whitespace-nowrap"
             aria-label="Email"
           >
             <Mail size={16} strokeWidth={1} className="flex-shrink-0" />
-            <span className="text-center md:text-left">an.photography.matrimoni@gmail.com</span>
+            <span>an.photography.matrimoni@gmail.com</span>
           </a>
         </div>
 
