@@ -21,18 +21,17 @@ const AboutSection = () => {
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 md:gap-20 items-center">
         {/* Text - left */}
         <div
-          className={`space-y-6 transition-all duration-1000 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`space-y-6 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <p className="heading-caps text-muted-foreground">O meni</p>
           <h2 className="font-serif text-4xl md:text-5xl font-light italic leading-tight">
-            Svaka priča zaslužuje da bude ispričana
+            Transparentnost i odgovornost kroz objektiv
           </h2>
           <p className="text-muted-foreground leading-relaxed font-light">
-            [DODAJ TEKST O SEBI — Ovde ide tvoj lični opis, tvoj pristup fotografiji, 
-            šta te inspiriše i zašto voliš da fotografišeš venčanja. 
-            Tekst ćeš naknadno dostaviti.]
+            Fotografijom se bavim više od dvadeset godina, a od 2018. godine profesionalno dokumentujem venčanja, rođendane i proslave. Moj put nije tipična priča „fotograf od malena“ — počeo sam uz računare i digitalne alate, ovladao Photoshop‑om i Lightroom‑om, a zatim se posvetio fotografisanju događaja.
+            Danas radim kao profesionalni fotograf za venčanja, rođendane i evente u Nišu, Srbiji i regionu. Od mene možete očekivati transparentnost i odgovornost: sve što dogovorimo, isporučujem tačno kako je dogovoreno. Fotografija za mene nije samo posao, već i obaveza i odgovornost da klijentima pružim uspomene koje će trajati zauvek.
+            Moj pristup je iskren i direktan — kombinujem tehničku preciznost sa emocijom trenutka. Bilo da je u pitanju venčanje, osamnaesti rođendan ili prva proslava, moj cilj je da svaka fotografija bude autentična i verna vašem danu.
           </p>
           <a href="/kontakt" className="link-underline heading-caps text-xs inline-block mt-4">
             KONTAKTIRAJ ME
@@ -41,9 +40,8 @@ const AboutSection = () => {
 
         {/* Photo - right */}
         <div
-          className={`transition-all duration-1000 delay-200 ${
-            visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          }`}
+          className={`transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+            }`}
         >
           <div className="aspect-[3/4] overflow-hidden">
             <img
