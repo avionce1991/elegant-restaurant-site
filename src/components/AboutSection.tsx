@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import photographerImg from "@/assets/photographer-portrait.jpg";
+import { image } from "../images";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const AboutSection = () => {
@@ -33,7 +33,7 @@ const AboutSection = () => {
           <p className="text-muted-foreground leading-relaxed font-light whitespace-pre-line">
             {t("about.text")}
           </p>
-          <a href="/kontakt" className="link-underline heading-caps text-xs inline-block mt-4">
+          <a href={`/${localStorage.getItem("lang") || "en"}/kontakt`} className="link-underline heading-caps text-xs inline-block mt-4">
             {t("about.cta")}
           </a>
         </div>
@@ -45,7 +45,7 @@ const AboutSection = () => {
         >
           <div className="aspect-[3/4] overflow-hidden">
             <img
-              src={photographerImg}
+              src={image.photographerPortrait}
               alt="Aleksandar Ničić - Wedding Photographer"
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-700"
             />

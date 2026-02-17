@@ -1,47 +1,57 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
-import masonry1 from "@/assets/masonry-1.jpg";
-import masonry2 from "@/assets/masonry-2.jpg";
-import masonry3 from "@/assets/masonry-3.jpg";
-import masonry4 from "@/assets/masonry-4.jpg";
-import masonry5 from "@/assets/masonry-5.jpg";
-import gallery1 from "@/assets/gallery-1.jpg";
-import gallery2 from "@/assets/gallery-2.jpg";
-import gallery3 from "@/assets/gallery-3.jpg";
-import gallery4 from "@/assets/gallery-4.jpg";
-import gallery5 from "@/assets/gallery-5.jpg";
-import gallery6 from "@/assets/gallery-6.jpg";
-import gallery7 from "@/assets/gallery-7.jpg";
-import gallery8 from "@/assets/gallery-8.jpg";
-import gallery9 from "@/assets/gallery-9.jpg";
+import { image } from "../images";
 
-// 32 images to fill 4 columns evenly (8 per column)
 const allImages = [
-  masonry1, masonry2, masonry3, masonry4, masonry5,
-  gallery1, gallery2, gallery3, gallery4, gallery5,
-  gallery6, gallery7, gallery8, gallery9, masonry1,
-  masonry2, masonry3, masonry4, masonry5, gallery1,
-  gallery2, gallery3, gallery4, gallery5, gallery6,
-  gallery7, gallery8, gallery9, masonry1, masonry2,
-  masonry3, masonry4,
+  image.masonry7, image.masonry2, image.masonry10, image.masonry15, image.masonry4,
+  image.masonry28, image.masonry12, image.masonry21, image.masonry9, image.masonry29,
+  image.masonry1, image.masonry18, image.masonry5, image.masonry14, image.masonry31,
+  image.masonry8, image.masonry20, image.masonry3, image.masonry11, image.masonry25,
+  image.masonry6, image.masonry17, image.masonry32, image.masonry23, image.masonry13,
+  image.masonry19, image.masonry16, image.masonry22, image.masonry24, image.masonry27, 
+  image.masonry26, image.masonry30
 ];
 
-const MasonryGallery = () => {
+const MasonryImage = ({ src, alt, delay }: { src: string; alt: string; delay: number }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.disconnect();
+        }
       },
-      { threshold: 0.05 }
+      { threshold: 0.15 }
     );
     if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
 
-  // Split into 4 columns for desktop, 2 for mobile
+  return (
+    <div
+      ref={ref}
+      className="overflow-hidden"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? "translateY(0) scale(1)" : "translateY(30px) scale(0.97)",
+        transition: `opacity 0.7s ease-out ${delay}ms, transform 0.7s ease-out ${delay}ms`,
+      }}
+    >
+      <img
+        src={src}
+        alt={alt}
+        className="w-full h-auto object-cover hover:scale-105 transition-transform duration-700"
+        loading="lazy"
+      />
+    </div>
+  );
+};
+
+const MasonryGallery = () => {
+  // Split into columns
   const getColumns = (count: number) => {
     const cols: string[][] = Array.from({ length: count }, () => []);
     allImages.forEach((img, i) => {
@@ -51,31 +61,20 @@ const MasonryGallery = () => {
   };
 
   return (
-    <section ref={ref} className="py-16 md:py-24 px-4 md:px-8">
-      <div
-        className={`transition-all duration-1000 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-        }`}
-      >
+    <>
+      <div dangerouslySetInnerHTML={{ __html: '<!-- COMPONENT: MasonryGallery -->' }} />
+      <section className="py-16 md:py-24 px-4 md:px-8">
         {/* Desktop: 4 columns */}
         <div className="hidden md:grid grid-cols-4 gap-4">
           {getColumns(4).map((col, colIdx) => (
             <div key={colIdx} className="flex flex-col gap-4">
               {col.map((img, imgIdx) => (
-                <div
+                <MasonryImage
                   key={imgIdx}
-                  className="overflow-hidden group"
-                  style={{
-                    animationDelay: `${(colIdx * 100) + (imgIdx * 50)}ms`,
-                  }}
-                >
-                  <img
-                    src={img}
-                    alt={`Wedding photography ${colIdx * 8 + imgIdx + 1}`}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-700"
-                    loading="lazy"
-                  />
-                </div>
+                  src={img}
+                  alt={`Wedding photography ${colIdx * 8 + imgIdx + 1}`}
+                  delay={colIdx * 80}
+                />
               ))}
             </div>
           ))}
@@ -86,20 +85,18 @@ const MasonryGallery = () => {
           {getColumns(2).map((col, colIdx) => (
             <div key={colIdx} className="flex flex-col gap-3">
               {col.map((img, imgIdx) => (
-                <div key={imgIdx} className="overflow-hidden">
-                  <img
-                    src={img}
-                    alt={`Wedding photography ${colIdx * 15 + imgIdx + 1}`}
-                    className="w-full h-auto object-cover"
-                    loading="lazy"
-                  />
-                </div>
+                <MasonryImage
+                  key={imgIdx}
+                  src={img}
+                  alt={`Wedding photography ${colIdx * 15 + imgIdx + 1}`}
+                  delay={colIdx * 60}
+                />
               ))}
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 
