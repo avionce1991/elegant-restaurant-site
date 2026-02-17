@@ -132,9 +132,9 @@ import lg131 from "@/assets/landscape-gallery-131.jpg";
 import lg132 from "@/assets/landscape-gallery-132.jpg";
 
 export const landscapeImages = [
-  lg1, lg2, lg3, lg4, lg5, lg6, lg7, lg8, lg9, lg10,
-  lg11, lg12, lg13, lg14, lg15, lg16, lg17, lg18, lg19, lg20,
-  lg21, lg22, lg23, lg24, lg25, lg26, lg27, lg28, lg29, lg30,
+  lg1, lg2, lg3, lg4, lg5, lg6, lg7, lg8, lg9, lg10, lg30,
+  lg11, lg12, lg13, lg20, lg14, lg21, lg15, lg22, lg16,
+  lg23, lg17, lg24, lg18, lg25, lg19, lg26, lg27, lg28, lg29,
   lg31, lg32, lg33, lg34, lg35, lg36, lg37, lg38, lg39, lg40,
   lg41, lg42, lg43, lg44, lg45, lg46, lg47, lg48, lg49, lg50,
   lg51, lg52, lg53, lg54, lg55, lg56, lg57, lg58, lg59, lg60,
