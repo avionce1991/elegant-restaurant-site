@@ -14,10 +14,14 @@ app.post("/contact", async (req, res) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
-      user: "an.photography.matrimoni@gmail.com",     
-      pass: "GoogleDriveMemorija!2023"      
+      user: process.env.GMAIL_USER, 
+      pass: process.env.GMAIL_PASS    
     }
   });
+
+app.get('/', (req,res) => {
+  res.send("Server radi! Koristi POST /contact za slanje poruke.")
+})
 
   let mailOptions = {
     from: "an.photography.matrimoni@gmail.com",
@@ -38,4 +42,4 @@ app.post("/contact", async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log("Server radi na portu 3001"));
+const PORT = process.env.PORT || 3001; app.listen(PORT, () => console.log(`Server radi na portu ${PORT}`));
