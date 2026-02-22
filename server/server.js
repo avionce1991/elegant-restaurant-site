@@ -14,14 +14,14 @@ app.get("/", (req, res) => {
 app.post("/contact", async (req, res) => {
   const { fullName, email, weddingDate, message } = req.body;
 
-  // Gmail SMTP transport
+  // Gmail resent transport
   let transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
+    host: "smtp.resend.com",
     port: 587,
     secure: false,
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS
+      user: "resend",
+      pass: process.env.RESEND_API_KEY
     }
   });
 
