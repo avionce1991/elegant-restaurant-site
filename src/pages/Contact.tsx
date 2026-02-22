@@ -21,7 +21,7 @@ const Contact = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3001/contact", {
+      const res = await fetch("https://an-photography-website.onrender.com", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
